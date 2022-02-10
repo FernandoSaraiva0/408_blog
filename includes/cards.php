@@ -2,13 +2,13 @@
     $result = '';
     foreach($posts as $post){
         $result .=' <div class="card" style="width: 18rem;">
-        <img src="img/0'.$post['id'].'.jpg" class="card-img-top" alt="...">
+        <img src="assets/img/0'.$post['id'].'.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">'.$post['titulo'].'</h5>
             <p class="card-text">'.$post['conteudo'].'</p>
         </div>
         <div class="card-body">
-            <a href="#" class="card-link">Leia mais...</a>
+            <a href="post.php?id='.$post['id'].'" class="card-link">Leia mais...</a>
         </div>
         </div>';
     }

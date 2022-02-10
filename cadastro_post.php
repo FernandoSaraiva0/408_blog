@@ -1,12 +1,14 @@
 <?php
-    require __DIR__.'/conexao.php';
+    require __DIR__.'/App/Entity/Post.php';
+
+    use App\Entity\Post;
 
     #Cadastrando dados no Banco de dados
     if(isset($_GET['titulo'], $_GET['conteudo'])){
-        $stmt = $con->prepare('INSERT INTO post (titulo, conteudo) VALUES (?, ?)');
-        $stmt->bindParam(1, $_GET['titulo']);
-        $stmt->bindParam(2, $_GET['conteudo']);
-        $stmt->execute();
+        $obPost = new Post();
+        $obPost->titulo = $_POST['titulo'];
+        $obPost->conteudo = $_POST['conteudo'];
+        $obPost->cadastrar();
     }
 
     include __DIR__.'/includes/header.php';

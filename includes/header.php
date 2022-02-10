@@ -14,7 +14,7 @@
     <!-- Header -->
         <header>
             <div class="conteudo d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid banner" src="img/banner.png" alt="">
+                <img class="img-fluid banner" src="assets/img/banner.png" alt="">
                 <div class="z-index-1 d-flex flex-column justify-content-center align-items-center"> 
                     <h1>Charlie Parker</h1>
                     <h3>Um blog sobre a vida e obra de Charlie Parker</h3>
