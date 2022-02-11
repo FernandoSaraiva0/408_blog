@@ -24,7 +24,7 @@ class Database{
     #Conexão com banco de dados
     public function setCon(){
         try{
-            $this->con = new PDO('mysql:host='.$this->HOST.';dbname='.$this->DB.'', $this->USER, $this->PASS);
+            $this->con = new PDO('mysql:host='.self::HOST.';dbname='.self::DB.'', self::USER, self::PASS);
             $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "";
         }catch(PDOException $ex){
@@ -60,6 +60,36 @@ class Database{
         $this->execute($query, array_values($values));
         #retornando o ultimo id inserido
         return $this->con->lastInsertId();
+    }
+
+    public function select($where = null, $order = null, $limit = null, $fields = '*'){
+        #pegar os dados para a consulta
+        $where = strlen($where) ? ' WHERE '.$where : ' ';
+        $order = strlen($order) ? ' WHERE '.$order : ' ';
+        $limit = strlen($limit) ? ' WHERE '.$limit : ' ';
+
+        #montando a consulta
+        $query = 'SELECT '.$fields.' FROM '.$this->table.$where.$order.$limit;
+
+        #executando a consulta
+        return $this->execute($query);
+    }
+
+    public function update($where, $values){
+        $fields = array_keys($values);
+        $query = 'UPDATE '.$this->table.' SET '.implode(' =?, ', $fields).' =? WHERE '.$where;
+
+        $this->execute($query, array_values($values));
+
+        return true;
+    }
+
+    public function delete($where){
+        $query = 'DELETE FROM '.$this->table.' WHERE '.$where;
+
+        $this->execute($query);
+
+        return true;
     }
 
 

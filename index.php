@@ -1,8 +1,10 @@
 <?php
-    require __DIR__.'/conexao.php';
+    require __DIR__.'/vendor/autoload.php';
+
+    use App\Entity\Post;
 
     #pegando posts do banco de dados com PDO
-    $posts = $select->fetchAll(PDO::FETCH_ASSOC);
+    $posts = Post::getPosts();
 
     include __DIR__.'/includes/header.php';
     include __DIR__.'/includes/cards.php';
